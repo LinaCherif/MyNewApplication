@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCatActivity">
+
+
+    <TextView
+        android:id="@+id/slogan_categorie"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/bevan"
+        android:gravity="center_horizontal"
+        android:text="Ajouter Un Nouveau Produit cosmetique"
+        android:textAlignment="center"
+        android:textColor="#EC6291"
+        android:textColorHighlight="#EA6F99"
+        android:textColorHint="#E91E63"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/linear2_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_below="@+id/linear1_category_layout"
+        android:layout_marginTop="290dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/glasses"
+            android:layout_width="140dp"
+            android:layout_height="90dp"
+            android:src="@drawable/pom" />
+
+        <ImageView
+            android:id="@+id/purses_bags_wallets"
+            android:layout_width="140dp"
+            android:layout_height="90dp"
+            android:src="@drawable/pommade" />
+
+        <ImageView
+            android:id="@+id/hats_caps"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:src="@drawable/creme" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
