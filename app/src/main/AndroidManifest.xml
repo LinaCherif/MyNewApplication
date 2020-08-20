@@ -14,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".VetementActivity"></activity>
+        <activity android:name=".CosmeticActivity" />
         <activity android:name=".SearchProductsActivity" />
         <activity android:name=".zSplashScreen">
             <intent-filter>
@@ -34,7 +36,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SettinsActivity" />
         <activity android:name=".RessetPasswordActivity" />
-
 
         <meta-data
             android:name="preloaded_fonts"

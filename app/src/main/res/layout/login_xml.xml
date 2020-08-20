@@ -84,6 +84,7 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:typeface="serif"
         app:layout_constraintBottom_toTopOf="@+id/Etpassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.264"

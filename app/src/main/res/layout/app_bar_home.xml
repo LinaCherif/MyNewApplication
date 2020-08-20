@@ -45,12 +45,4 @@
         android:layout_marginBottom="16dp"
         app:srcCompat="@drawable/search" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        app:layout_anchor="@+id/include"
-        android:layout_width="match_parent"
-        android:layout_height="472dp"
-        app:layout_anchorGravity="center"
-        />
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

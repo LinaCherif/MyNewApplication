@@ -17,16 +17,16 @@ import com.squareup.picasso.Target;
 
 import java.util.List;
 
-public class AdapterProduct  extends RecyclerView.Adapter<AdapterProduct.Myholder>{
+public class VetAdapter  extends RecyclerView.Adapter<VetAdapter.Myholder>{
 
 
     private Context context;
-    private List<Products> vet_list;
+    private List<Products> vet_list2;
 
-    public AdapterProduct(Context context,List<Products>vet_list)
+    public VetAdapter(Context context,List<Products>vet_list2)
     {
         this.context=context;
-        this.vet_list=vet_list;
+        this.vet_list2=vet_list2;
     }
 
     @NonNull
@@ -40,7 +40,7 @@ public class AdapterProduct  extends RecyclerView.Adapter<AdapterProduct.Myholde
     @Override
     public void onBindViewHolder(@NonNull Myholder myholder, int i) {
 
-        Products vet = vet_list.get(i);
+        Products vet = vet_list2.get(i);
         myholder.mTitle.setText(vet.getPname());
         myholder.mDes.setText(vet.getDescription());
         myholder.mprice.setText(vet.getPrice());
@@ -58,7 +58,7 @@ public class AdapterProduct  extends RecyclerView.Adapter<AdapterProduct.Myholde
     @Override
     public int getItemCount() {
 
-          return vet_list.size();
+        return vet_list2.size();
     }
 
     public class Myholder extends RecyclerView.ViewHolder {

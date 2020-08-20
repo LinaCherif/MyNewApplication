@@ -22,9 +22,15 @@
             android:title="Ordres"
             android:iconTint="@android:color/white"/>
         <item
-            android:id="@+id/nav_categories"
-            android:icon="@drawable/category"
-            android:title="Catégories"
+            android:id="@+id/nav_cos"
+            android:icon="@drawable/masque"
+            android:title="Cosmétiques"
+            android:iconTint="@android:color/white"/>
+
+        <item
+            android:id="@+id/nav_vet"
+            android:icon="@drawable/vetement"
+            android:title="Vêtements"
             android:iconTint="@android:color/white"/>
         <item
             android:id="@+id/nav_manage"
