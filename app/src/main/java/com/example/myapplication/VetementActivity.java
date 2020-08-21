@@ -53,9 +53,9 @@ public class VetementActivity extends AppCompatActivity {
 
         Paper.init(this);
 
-        /*Toolbar tool = (Toolbar) findViewById(R.id.tool);
+      Toolbar tool = (Toolbar) findViewById(R.id.tool);
         tool.setTitle("Vêtements");
-        setSupportActionBar(tool);*/
+        setSupportActionBar(tool);
 
         feuilleter();
         nvlCollec();

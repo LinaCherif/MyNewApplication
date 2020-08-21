@@ -7,23 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".VetementActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        tools:ignore="MissingConstraints">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tool"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorAccent"
-        android:label="Vêtements"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
-    </com.google.android.material.appbar.AppBarLayout>
 
     <include
         android:id="@+id/vet"
         layout="@layout/vet_page" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
