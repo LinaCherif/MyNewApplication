@@ -65,30 +65,28 @@
 
 
     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/add_product_to_cart_btn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:elevation="6dp"
-    android:backgroundTint="@color/colorAccent"
-    android:src="@drawable/nav_cart"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentBottom="true"
-    android:layout_margin="15dp" />
 
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_product_to_cart_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/nav_cart"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp" />-->
     <Button
         android:id="@+id/pd_add_to_cart_button"
-        android:layout_width="171dp"
-        android:layout_height="54dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/seconnecter"
         android:backgroundTint="@color/colorAccent"
+        android:layout_margin="18dp"
         android:text="Add to cart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_product_to_cart_btn"
-        app:layout_constraintVertical_bias="0.345"  />
+        android:textSize="18dp"
+        android:layout_alignParentBottom="true"  />
+
 
 
 </RelativeLayout>

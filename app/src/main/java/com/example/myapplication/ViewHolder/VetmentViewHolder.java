@@ -1,5 +1,6 @@
 package com.example.myapplication.ViewHolder;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -7,7 +8,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Interface.ItemClickListner;
+import com.example.myapplication.ProductDetailsActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.VetementActivity;
 
 public class VetmentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {

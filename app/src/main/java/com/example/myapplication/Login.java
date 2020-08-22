@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Admin.AdminCatActivity;
 import com.example.myapplication.Model.Utilisateurs;
 import com.example.myapplication.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +29,7 @@ public class Login extends AppCompatActivity {
     private Button LoginButton;
     private ProgressDialog loadingBar;
     private TextView AdminLink , NotAdminLink,ForgetPasswordLink;
-    private String parentDbName = "Utilisateurs";
+    private String parentDbName = "User";
     private CheckBox chkboxrememberme;
 
 
@@ -83,7 +84,7 @@ public class Login extends AppCompatActivity {
                 LoginButton.setText("Login Admin");
                 AdminLink.setVisibility(view.INVISIBLE);
                 NotAdminLink.setVisibility(view.VISIBLE);
-                parentDbName ="Admins";
+                parentDbName ="Admin";
             }
         });
         NotAdminLink.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +146,7 @@ public class Login extends AppCompatActivity {
                     {
                         if (usersData.getPassword().equals(password))
                         {
-                            if (parentDbName.equals("Admins"))
+                            if (parentDbName.equals("Admin"))
                             {
                                 Toast.makeText(Login.this, "Bienvenue Admin, Vous étes connectés!", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
@@ -153,7 +154,7 @@ public class Login extends AppCompatActivity {
 
                                 startActivity(intent);
                             }
-                            else if (parentDbName.equals("Utilisateurs"))
+                            else if (parentDbName.equals("User"))
                             {
                                 Toast.makeText(Login.this, "la connexion est réussie.", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();

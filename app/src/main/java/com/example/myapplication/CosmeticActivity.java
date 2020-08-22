@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +72,7 @@ public class CosmeticActivity extends AppCompatActivity {
                     {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "DA");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
                     }
 
@@ -86,6 +87,9 @@ public class CosmeticActivity extends AppCompatActivity {
                 };
         recyclerview.setAdapter(adapter);
         adapter.startListening();
+       // Intent intent = new Intent(CosmeticActivity.this , ProductDetailsActivity.class);
+        //startActivity(intent);
+       // finish();
     }
 
 

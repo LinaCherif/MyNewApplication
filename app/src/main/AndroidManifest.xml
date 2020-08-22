@@ -14,7 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VetementActivity"></activity>
+        <activity android:name=".Admin.AdminMaintainProductsActivity"></activity>
+        <activity android:name=".Admin.AdminUserProductsActivity" />
+        <activity android:name=".Admin.AdminNewOrderActivity" />
+        <activity android:name=".ConfirmFinalOrderActivity" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".VetementActivity" />
         <activity android:name=".CosmeticActivity" />
         <activity android:name=".SearchProductsActivity" />
         <activity android:name=".zSplashScreen">
@@ -26,10 +31,10 @@
         </activity>
         <activity android:name=".Inscription" />
         <activity android:name=".Login" />
-        <activity android:name=".AdminCatActivity" />
-        <activity android:name=".AdminCat2Activity" />
-        <activity android:name=".AdminAddActivity" />
-        <activity android:name=".AdminAdd2Activity" />
+        <activity android:name=".Admin.AdminCatActivity" />
+        <activity android:name=".Admin.AdminCat2Activity" />
+        <activity android:name=".Admin.AdminAddActivity" />
+        <activity android:name=".Admin.AdminAdd2Activity" />
         <activity
             android:name=".home"
             android:label="@string/title_activity_hom"

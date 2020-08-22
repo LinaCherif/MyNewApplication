@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Admin.AdminMaintainProductsActivity;
 import com.example.myapplication.Model.Products;
 import com.example.myapplication.Prevalent.Prevalent;
 import com.example.myapplication.ViewHolder.ProductViewHolder;
@@ -27,7 +28,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -46,6 +46,7 @@ import io.paperdb.Paper;
      private String type = "";
 
 
+
      FirebaseDatabase firebaseDatabase;
      ActionBar actionBar;
 
@@ -59,7 +60,7 @@ import io.paperdb.Paper;
          Intent intent = getIntent();
          Bundle bundle = intent.getExtras();
          if (bundle != null) {
-             type = getIntent().getExtras().get("Admins").toString();
+             type = getIntent().getExtras().get("Admin").toString();
 
 
          }
@@ -81,7 +82,7 @@ import io.paperdb.Paper;
          fa.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 if (!type.equals("Admins")) {
+                 if (!type.equals("Admin")) {
                      Intent intent = new Intent(home.this, SearchProductsActivity.class);
                      startActivity(intent);
                  }
@@ -92,9 +93,11 @@ import io.paperdb.Paper;
          FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
          fab.setOnClickListener(new View.OnClickListener() {
              @Override
-             public void onClick(View view) {
-                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                         .setAction("Action", null).show();
+             public void onClick(View view)
+             { Intent intent = new Intent(home.this, CartActivity.class);
+             startActivity(intent);
+
+
              }
          });
 
@@ -115,8 +118,10 @@ import io.paperdb.Paper;
          TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
          CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
+         if (!type.equals("Admin")) {
          userNameTextView.setText(Prevalent.currentOnlineUser.getName());
-         Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+         Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);    }
+
 
 
 
@@ -148,19 +153,33 @@ import io.paperdb.Paper;
                     @Override
                     protected void onBindViewHolder(@Nullable ProductViewHolder holder, int position, @Nullable final Products model)
                     {
+
+
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "DA");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
+
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view)
                             {
+                                if (type.equals("Admin"))
+                                {
+                                    Intent intent = new Intent(home.this, AdminMaintainProductsActivity.class);
+                                    intent.putExtra("pid", model.getPid());
+                                    startActivity(intent);
 
+                                }
+                                else {
                                     Intent intent = new Intent(home.this, ProductDetailsActivity.class);
                                     intent.putExtra("pid", model.getPid());
                                     startActivity(intent);
+                                }
+
+
 
                             }
                         });
@@ -218,10 +237,24 @@ import io.paperdb.Paper;
          int id = item.getItemId();
 
          if (id == R.id.nav_cart) {
+             if (!type.equals("Admin")) {
+                 Intent intent = new Intent(home.this, CartActivity.class);
+                 startActivity(intent);
 
-         } else if (id == R.id.nav_fav) {
+             }
 
-         } else if (id == R.id.nav_orders) {
+
+
+         }
+         else if (id == R.id.nav_fav) {
+
+         } else if (id == R.id.nav_search) {
+             if (!type.equals("Admin")) {
+                 Intent intent = new Intent(home.this, SearchProductsActivity.class);
+                 startActivity(intent);
+
+             }
+
 
          } else if (id == R.id.nav_cos) {
              Intent intent = new Intent(home.this, CosmeticActivity.class);
@@ -232,15 +265,23 @@ import io.paperdb.Paper;
              startActivity(intent);
 
          }else if (id == R.id.nav_manage) {
+             if (!type.equals("Admin")) {
              Intent intent = new Intent(home.this, SettinsActivity.class);
              startActivity(intent);
+             }
          } else if (id == R.id.nav_logout) {
+             if (!type.equals("Admin")) {
+                 Paper.book().destroy();
+
+                 Intent intent = new Intent(home.this, Login.class);
+                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                 startActivity(intent);
+                 finish();
+
+             }
              Paper.book().destroy();
 
-             Intent intent = new Intent(home.this, Login.class);
-             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-             startActivity(intent);
-             finish();
+
          }
 
 

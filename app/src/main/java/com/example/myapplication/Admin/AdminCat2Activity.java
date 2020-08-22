@@ -1,10 +1,12 @@
-package com.example.myapplication;
+package com.example.myapplication.Admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 public class AdminCat2Activity extends AppCompatActivity {
 
@@ -27,7 +29,7 @@ public class AdminCat2Activity extends AppCompatActivity {
         pom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(AdminCat2Activity.this ,AdminAdd2Activity.class);
+                Intent intent= new Intent(AdminCat2Activity.this , AdminAdd2Activity.class);
                 intent.putExtra("categorie","Gommage");
                 startActivity(intent);
             }
