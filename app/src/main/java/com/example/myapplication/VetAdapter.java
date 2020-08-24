@@ -44,7 +44,7 @@ public class VetAdapter  extends RecyclerView.Adapter<VetAdapter.Myholder>{
         myholder.mTitle.setText(vet.getPname());
         myholder.mDes.setText(vet.getDescription());
         myholder.mprice.setText(vet.getPrice());
-        myholder.mTaille.setText(vet.getTaille());
+
 
         Picasso.get()
                 .load(vet.getImage())

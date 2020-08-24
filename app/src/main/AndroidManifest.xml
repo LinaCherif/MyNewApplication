@@ -22,6 +22,12 @@
         <activity android:name=".VetementActivity" />
         <activity android:name=".CosmeticActivity" />
         <activity android:name=".SearchProductsActivity" />
+        <activity android:name=".ProductDetailsActivity" />
+        <activity android:name=".CosmeticDetailsActivity" />
+        <activity android:name=".VetementDetailsActivity" />
+        <activity android:name=".CartCosActivity" />
+        <activity android:name=".CartVetActivity" />
+        <activity android:name=".Favoris" />
         <activity android:name=".zSplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

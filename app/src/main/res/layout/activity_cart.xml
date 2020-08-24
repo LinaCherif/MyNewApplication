@@ -16,7 +16,7 @@
           android:id="@+id/total_price"
           android:layout_width="match_parent"
           android:layout_height="50dp"
-         android:text="Total Price="
+         android:text="Prix Totale="
          android:textColor="@android:color/white"
          android:textSize="22dp"
          android:textAlignment="center"
@@ -52,7 +52,7 @@
        android:layout_height="wrap_content"
       android:layout_alignParentBottom="true"
       android:background="@color/colorAccent"
-      android:text="Next"
+      android:text="Suivant"
       android:textColor="@android:color/white"
       android:textSize="22dp"
       android:layout_margin="16dp" />

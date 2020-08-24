@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
-    private EditText nameEditText, phoneEditText,addressEditText, cityEditText;
+    private EditText nameEditText, phoneEditText,addressEditText, cityEditText, sizeTxt;
     private Button confirmOrderBtn;
     private  String totalAmount = "";
 
@@ -34,14 +34,15 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_final_order);
 
-        totalAmount = getIntent().getStringExtra("Total Price");
-        Toast.makeText(this,"Total Price =  DA" + totalAmount,Toast.LENGTH_SHORT).show();
+        totalAmount = getIntent().getStringExtra("Prix totale");
+        Toast.makeText(this,"Prix totale = " + totalAmount + " DA ",Toast.LENGTH_SHORT).show();
 
         confirmOrderBtn=(Button) findViewById(R.id.confirm_final_order_btn);
         nameEditText =(EditText)findViewById(R.id.shippment_name);
         phoneEditText =(EditText)findViewById(R.id.shippment_phone_number);
         addressEditText =(EditText)findViewById(R.id.shippment_address);
         cityEditText =(EditText)findViewById(R.id.shippment_city);
+        //sizeTxt = ( EditText)findViewById(R.id.taille);
 
         confirmOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,19 +55,19 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     {
         if (TextUtils.isEmpty(nameEditText.getText().toString()))
         {
-            Toast.makeText(this,"Please provide your full Name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"\n" + "Merci de saisir votre nom complet", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(phoneEditText.getText().toString()))
         {
-            Toast.makeText(this,"Please provide your Phone Number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"\n" + "Merci de saisir votre numéro de téléphone", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(addressEditText.getText().toString()))
         {
-            Toast.makeText(this,"Please provide your Address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"\n" + "Merci de saisir votre Address", Toast.LENGTH_SHORT).show();
         }
          else if (TextUtils.isEmpty(cityEditText.getText().toString()))
         {
-            Toast.makeText(this,"Please provide your City Name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Merci de saisir le nom de votre ville", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -83,14 +84,15 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime= currentTime.format(calForDate.getTime());
 
-        final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders")
+        final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Ordres")
                 .child(Prevalent.currentOnlineUser.getPhone());
         HashMap<String,Object> ordersMap = new HashMap<>();
         ordersMap.put("totalAmount",totalAmount);
-        ordersMap.put("Name",nameEditText.getText().toString());
-        ordersMap.put("Phone Number",phoneEditText.getText().toString());
-        ordersMap.put("Address",addressEditText.getText().toString());
-        ordersMap.put("City Name",cityEditText.getText().toString());
+        ordersMap.put("name",nameEditText.getText().toString());
+        ordersMap.put("phone",phoneEditText.getText().toString());
+        ordersMap.put("address",addressEditText.getText().toString());
+        ordersMap.put("city",cityEditText.getText().toString());
+        //ordersMap.put("taille",sizeTxt.getText().toString());
         ordersMap.put("time",saveCurrentTime);
         ordersMap.put("date",saveCurrentDate);
         ordersMap.put("state","not shipped");
@@ -108,7 +110,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful())
                                 {
-                                Toast.makeText(ConfirmFinalOrderActivity.this,"your final order has been placed successfully",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ConfirmFinalOrderActivity.this,"\n" + "votre commande finale a été passée avec succès",Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(ConfirmFinalOrderActivity.this, home.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

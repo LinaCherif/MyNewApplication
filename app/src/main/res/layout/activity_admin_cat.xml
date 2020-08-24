@@ -65,9 +65,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
         android:background="@color/colorAccent"
-        android:text="Add new cosmetics Products"
+        android:text="Ajouter un nouveau produit cosmétique"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textAllCaps="false"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -86,11 +86,11 @@
         android:layout_alignParentRight="true"
         android:background="@color/colorAccent"
         android:layout_marginBottom="8dp"
-        android:text="Check New Orders"
+        android:text="Vérifier les nouvelles commandes"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textColor="@android:color/white"
-        android:textSize="20dp"/>
+        android:textSize="18dp"/>
 
     <Button
         android:id="@+id/logout_btn"
@@ -109,9 +109,9 @@
         android:layout_marginBottom="8dp"
 
         android:background="@color/colorAccent"
-        android:text="logout"
+        android:text="Se déconnecter"
         android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/maintain_btn"
@@ -122,9 +122,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="7dp"
         android:background="@color/colorAccent"
-        android:text="Maintain Product"
+        android:text="Maintenir les produits"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
+        android:textSize="18dp"
 
         />
 

@@ -35,7 +35,7 @@ public class AdminAddActivity extends AppCompatActivity
     private String CategoryName, Description, Price, Pname, saveCurrentDate, saveCurrentTime, tail;
     private Button AddNewProductButton;
     private ImageView InputProductImage;
-    private TextView InputProductName, InputProductDescription, InputProductPrice, InputTaille;
+    private TextView InputProductName, InputProductDescription, InputProductPrice;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
     private String productRandomkey, downloadImageUrl;
@@ -53,7 +53,7 @@ public class AdminAddActivity extends AppCompatActivity
         Toast.makeText(this,"Bienvenue Admin!",Toast.LENGTH_LONG).show();
         CategoryName = getIntent().getExtras().get("categorie").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Image des Produits");
-        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Vêtements");
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Produits");
         Toast.makeText(this,CategoryName,Toast.LENGTH_SHORT).show();
 
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
@@ -61,7 +61,6 @@ public class AdminAddActivity extends AppCompatActivity
         InputProductName = (TextView) findViewById(R.id.product_name);
         InputProductDescription = (TextView) findViewById(R.id.product_description);
         InputProductPrice = (TextView) findViewById(R.id.product_price);
-        InputTaille = (TextView) findViewById(R.id.taille);
         loadingBar = new ProgressDialog(this);
 
 
@@ -112,7 +111,6 @@ public class AdminAddActivity extends AppCompatActivity
         Description = InputProductDescription.getText().toString();
         Price = InputProductPrice.getText().toString();
         Pname = InputProductName.getText().toString();
-        tail = InputTaille.getText().toString();
 
 
         if (ImageUri == null)
@@ -128,10 +126,6 @@ public class AdminAddActivity extends AppCompatActivity
             Toast.makeText(this, "Please write product Price...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Pname))
-        {
-            Toast.makeText(this, "Please write product name...", Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(tail))
         {
             Toast.makeText(this, "Please write product name...", Toast.LENGTH_SHORT).show();
         }
@@ -223,7 +217,6 @@ public class AdminAddActivity extends AppCompatActivity
         productMap.put("category", CategoryName);
         productMap.put("price", Price);
         productMap.put("pname", Pname);
-        productMap.put("taille", tail);
 
         ProductsRef.child(productRandomkey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

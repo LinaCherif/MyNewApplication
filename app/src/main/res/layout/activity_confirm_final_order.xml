@@ -10,7 +10,7 @@
         android:id="@+id/txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please write your Shippment Details"
+        android:text="Veuillez écrire les détails de votre expédition"
         android:textSize="18dp"
         android:textColor="@color/colorAccent"
         android:layout_margin="18dp"
@@ -25,7 +25,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="your Name"
+        android:hint="votre nom"
         />
     <EditText
         android:id="@+id/shippment_phone_number"
@@ -36,7 +36,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:inputType="number"
-        android:hint="your Phone Number"
+        android:hint="Votre numéro de teléphone"
         />
     <EditText
         android:id="@+id/shippment_address"
@@ -46,7 +46,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="your Home Address"
+        android:hint="Votre Address"
         />
     <EditText
         android:id="@+id/shippment_city"
@@ -56,15 +56,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="your City Name"
+        android:hint="Nom de votre ville"
         />
-    <Button
+
+    <com.rey.material.widget.Button
         android:id="@+id/confirm_final_order_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="25dp"
-        android:text="Confirm"
+        android:text="Confirmer"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"
         android:textSize="20dp"

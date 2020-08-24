@@ -35,7 +35,7 @@ public class AdminCatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminCatActivity.this, home.class);
-                intent.putExtra("Admin","Admin");
+                intent.putExtra("Admins","Admins");
                 startActivity(intent);
 
             }
@@ -67,7 +67,7 @@ public class AdminCatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminCatActivity.this, AdminCat2Activity.class);
-                intent.putExtra("Admin","ajout cosmetic");
+                intent.putExtra("Admins","ajout cosmetic");
                 startActivity(intent);
             }
         });

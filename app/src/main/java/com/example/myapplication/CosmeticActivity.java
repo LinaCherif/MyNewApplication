@@ -12,10 +12,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Admin.AdminMaintainProductsActivity;
 import com.example.myapplication.Model.Products;
 import com.example.myapplication.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -29,12 +31,21 @@ public class CosmeticActivity extends AppCompatActivity {
     private RecyclerView recyclerview;
     RecyclerView.LayoutManager layoutMan;
     FirebaseDatabase database;
+    private String type = "";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.cosmetic_page );
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            type = getIntent().getExtras().get("Admins").toString();
+
+
+        }
 
         CosRef= FirebaseDatabase.getInstance().getReference().child("Cosmétiques");
 
@@ -43,6 +54,19 @@ public class CosmeticActivity extends AppCompatActivity {
         Toolbar toolb = (Toolbar) findViewById(R.id.toolb);
         toolb.setTitle("Cosmétiques");
         setSupportActionBar(toolb);
+
+        /*FloatingActionButton cos_cart = (FloatingActionButton) findViewById(R.id.cos_cart);
+        cos_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                if(!type.equals("Admins")) {
+                    Intent intent = new Intent( CosmeticActivity.this , CartCosActivity.class );
+                    startActivity( intent );
+                }
+
+            }
+        });*/
 
 
         recyclerview = findViewById( R.id.cosmetic_recyclerview);
@@ -68,12 +92,23 @@ public class CosmeticActivity extends AppCompatActivity {
                     @NonNull
 
                     @Override
-                    protected void onBindViewHolder(@Nullable ProductViewHolder holder, int position, @Nullable Products model)
+                    protected void onBindViewHolder(@Nullable ProductViewHolder holder, int position, @Nullable final Products model)
                     {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "DA");
+                        holder.txtProductPrice.setText(model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+                        if (!type.equals("Admins")) {
+                            holder.itemView.setOnClickListener( new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent( CosmeticActivity.this , CosmeticDetailsActivity.class );
+                                    intent.putExtra( "pid" , model.getPid() );
+                                    startActivity( intent );
+
+                                }
+                            } );
+                        }
                     }
 
                     @NonNull

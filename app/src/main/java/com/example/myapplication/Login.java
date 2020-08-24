@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
     private Button LoginButton;
     private ProgressDialog loadingBar;
     private TextView AdminLink , NotAdminLink,ForgetPasswordLink;
-    private String parentDbName = "User";
+    private String parentDbName = "Utilisateurs";
     private CheckBox chkboxrememberme;
 
 
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity {
                 LoginButton.setText("Login Admin");
                 AdminLink.setVisibility(view.INVISIBLE);
                 NotAdminLink.setVisibility(view.VISIBLE);
-                parentDbName ="Admin";
+                parentDbName ="Admins";
             }
         });
         NotAdminLink.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +146,7 @@ public class Login extends AppCompatActivity {
                     {
                         if (usersData.getPassword().equals(password))
                         {
-                            if (parentDbName.equals("Admin"))
+                            if (parentDbName.equals("Admins"))
                             {
                                 Toast.makeText(Login.this, "Bienvenue Admin, Vous étes connectés!", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
@@ -154,7 +154,7 @@ public class Login extends AppCompatActivity {
 
                                 startActivity(intent);
                             }
-                            else if (parentDbName.equals("User"))
+                            else if (parentDbName.equals("Utilisateurs"))
                             {
                                 Toast.makeText(Login.this, "la connexion est réussie.", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();

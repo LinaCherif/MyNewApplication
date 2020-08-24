@@ -32,12 +32,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import static java.lang.Integer.*;
 
-public class CartActivity extends AppCompatActivity {
+public class CartCosActivity extends AppCompatActivity {
     private RecyclerView reyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button NextProcessBtn;
     private TextView txtTotalAmount , txtMsg1;
-    private int overTotalPrice;
+    private int overTotalPrice = 0;
 
 
     @Override
@@ -57,7 +57,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {   txtTotalAmount.setText("Prix totale = " + String.valueOf(overTotalPrice));
-                Intent intent = new Intent(CartActivity.this , ConfirmFinalOrderActivity.class);
+                Intent intent = new Intent(CartCosActivity.this , ConfirmFinalOrderActivity.class);
                 intent.putExtra("Prix totale", String.valueOf(overTotalPrice));
                 startActivity(intent);
                 finish();
@@ -75,9 +75,9 @@ public class CartActivity extends AppCompatActivity {
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         FirebaseRecyclerOptions<Cart> options=
                 new FirebaseRecyclerOptions.Builder<Cart>()
-                .setQuery(cartListRef.child("User View")
-                        .child(Prevalent.currentOnlineUser.getPhone()).child("Produits"),Cart.class)
-                .build();
+                        .setQuery(cartListRef.child("User View")
+                                .child(Prevalent.currentOnlineUser.getPhone()).child("Cosmétiques"),Cart.class)
+                        .build();
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
                 =new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @SuppressLint("SetTextI18n")
@@ -87,15 +87,15 @@ public class CartActivity extends AppCompatActivity {
                 holder.txtProductQuantity.setText( "Quantité =" + model.getQuantity());
                 holder.txtProductPrice.setText( "prix totale = " + model.getPrice() );
                 holder.txtProductName.setText( model.getPname());
-                if(!(model.getQuantity() == null)) {
-                    try {
-                        int oneTypeProductPrice = ((Integer.valueOf( model.getPrice() ))) * (Integer.valueOf( model.getQuantity()));
-                        overTotalPrice = overTotalPrice + oneTypeProductPrice;
-                    } catch (NumberFormatException e) {
-
-                        int oneTypeProductPrice = 0;
-                    }
+                try{
+                    int oneTypeProductPrice =((Integer.valueOf(model.getPrice())))* Integer.valueOf(model.getQuantity());
+                    overTotalPrice = overTotalPrice + oneTypeProductPrice;}
+                catch(NumberFormatException e)
+                {
+                    int oneTypeProductPrice =0;
                 }
+
+
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -106,8 +106,8 @@ public class CartActivity extends AppCompatActivity {
                                         "Modifier",
                                         "Supprimer"
 
-                    };
-                        AlertDialog.Builder builder= new AlertDialog.Builder(CartActivity.this);
+                                };
+                        AlertDialog.Builder builder= new AlertDialog.Builder(CartCosActivity.this);
                         builder.setTitle("Options du panier:");
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
@@ -115,7 +115,7 @@ public class CartActivity extends AppCompatActivity {
                             {
                                 if (i == 0)
                                 {
-                                    Intent intent = new Intent(CartActivity.this,ProductDetailsActivity.class);
+                                    Intent intent = new Intent(CartCosActivity.this,CosmeticDetailsActivity.class);
                                     intent.putExtra("pid",model.getPid());
                                     startActivity(intent);
 
@@ -124,19 +124,19 @@ public class CartActivity extends AppCompatActivity {
                                 {
                                     cartListRef.child("User View")
                                             .child(Prevalent.currentOnlineUser.getPhone())
-                                            .child("Produits")
+                                            .child("Cosmétiques")
                                             .child(model.getPid())
                                             .removeValue()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful())
-                                                        {
-                                                            Toast.makeText(CartActivity.this,"\n" + "Élément supprimé avec succès",Toast.LENGTH_SHORT).show();
-                                                            Intent intent = new Intent(CartActivity.this,home.class);
-                                                            startActivity(intent);
+                                                    {
+                                                        Toast.makeText(CartCosActivity.this,"\n" + "Élément supprimé avec succès",Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(CartCosActivity.this,home.class);
+                                                        startActivity(intent);
 
-                                                        }
+                                                    }
 
                                                 }
                                             });
@@ -176,28 +176,28 @@ public class CartActivity extends AppCompatActivity {
 
                 if (datasnapshot.exists())
                 {
-                  String shippingState = datasnapshot.child("state").getValue().toString();
-                  String userName = datasnapshot.child("name").getValue().toString();
+                    String shippingState = datasnapshot.child("state").getValue().toString();
+                    String userName = datasnapshot.child("name").getValue().toString();
 
-                  if (shippingState.equals("expédiée"))
-                  {
-                      txtTotalAmount.setText("Dear" + userName + "\n \n" + "la commande est expédiée avec succès.");
-                      reyclerView.setVisibility(View.GONE);
-                      txtMsg1.setVisibility(View.VISIBLE);
-                      txtMsg1.setText("\n" + "Félicitations, votre commande finale a été expédiée avec succès, vous recevrez bientôt votre commande à votre porte.");
-                      NextProcessBtn.setVisibility(View.GONE);
-                      Toast.makeText(CartActivity.this," vous pouvez acheter plus de produits quand vous avez reçu votre première commande",Toast.LENGTH_SHORT);
+                    if (shippingState.equals("expédiée"))
+                    {
+                        txtTotalAmount.setText("Dear" + userName + "\n \n" + "la commande est expédiée avec succès.");
+                        reyclerView.setVisibility(View.GONE);
+                        txtMsg1.setVisibility(View.VISIBLE);
+                        txtMsg1.setText("\n" + "Félicitations, votre commande finale a été expédiée avec succès, vous recevrez bientôt votre commande à votre porte.");
+                        NextProcessBtn.setVisibility(View.GONE);
+                        Toast.makeText(CartCosActivity.this," vous pouvez acheter plus de produits quand vous avez reçu votre première commande",Toast.LENGTH_SHORT);
 
 
 
-            }
-                   else if (shippingState.equals(" non expédiée"))
+                    }
+                    else if (shippingState.equals(" non expédiée"))
                     {
                         txtTotalAmount.setText("\n" + "État d'expédition = non expédié");
                         reyclerView.setVisibility(View.GONE);
                         txtMsg1.setVisibility(View.VISIBLE);
                         NextProcessBtn.setVisibility(View.GONE);
-                        Toast.makeText(CartActivity.this," vous pouvez acheter plus de produits quand vous avez reçu votre première commande",Toast.LENGTH_SHORT);
+                        Toast.makeText(CartCosActivity.this," vous pouvez acheter plus de produits quand vous avez reçu votre première commande",Toast.LENGTH_SHORT);
 
 
                     }
@@ -212,5 +212,5 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-}
+    }
 }

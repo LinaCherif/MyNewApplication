@@ -15,6 +15,7 @@ public class AdminOrders {
         this.date = date;
         this.time = time;
         this.totalAmount = totalAmount;
+
     }
 
     public String getName() {
@@ -80,4 +81,12 @@ public class AdminOrders {
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
     }
+
+    /*public String getTaille() {
+        return taille;
+    }
+
+    public void setTaille(String taille) {
+        this.taille = taille;
+    }*/
 }

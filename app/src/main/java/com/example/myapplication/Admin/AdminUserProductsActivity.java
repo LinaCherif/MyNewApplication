@@ -33,12 +33,12 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         userID =getIntent().getStringExtra("uid");
 
         productsList=findViewById(R.id.products_list);
-        productsList.setHasFixedSize(true);
+        //productsList.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(this);
         productsList.setLayoutManager(layoutManager);
 
         CartListRef = FirebaseDatabase.getInstance().getReference()
-                .child("Cart List").child("Admin View").child(userID).child("Products");
+                .child("Cart List").child("Admin View").child(userID).child("Produits");
 
     }
 
@@ -52,8 +52,8 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int i, @NonNull Cart model) {
-                holder.txtProductQuantity.setText( "Quantity =" + model.getQuantity());
-                holder.txtProductPrice.setText("Price =" + model.getPrice() + "DA");
+                holder.txtProductQuantity.setText( "Quantité =" + model.getQuantity());
+                holder.txtProductPrice.setText("Prix =" + model.getPrice() );
                 holder.txtProductName.setText( model.getPname());
 
             }

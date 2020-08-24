@@ -7,7 +7,7 @@ public class Products {
     public Products(String pid , String pname , String description) {
     }
 
-    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time, String taille) {
+    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time) {
         this.pname = pname;
         this.description = description;
         this.price = price;
@@ -16,7 +16,7 @@ public class Products {
         this.pid = pid;
         this.date = date;
         this.time = time;
-        this.taille = taille;
+
     }
 
     public String getPname() {
@@ -82,11 +82,5 @@ public class Products {
     public void setTime(String time) {
         this.time = time;
     }
-    public String getTaille() {
-        return taille;
-    }
 
-    public void setTaille(String taille) {
-        this.taille = taille;
-    }
 }

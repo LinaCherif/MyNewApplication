@@ -19,6 +19,7 @@ import com.example.myapplication.ViewHolder.ProductViewHolder;
 import com.example.myapplication.ViewHolder.VetmentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +45,7 @@ public class VetementActivity extends AppCompatActivity {
     private List<Products>vet_list2;
     RecyclerView.LayoutManager layoutMn;
     FirebaseDatabase data;
+    private String type = "";
 
 
     @Override
@@ -59,19 +61,32 @@ public class VetementActivity extends AppCompatActivity {
         tool.setTitle("Vêtements");
         setSupportActionBar(tool);
 
-        feuilleter();
-        nvlCollec();
+        /*FloatingActionButton vet_cart = (FloatingActionButton) findViewById(R.id.vet_cart);
+        vet_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                if(!type.equals("Admins")) {
+                    Intent intent = new Intent( VetementActivity.this , CartVetActivity.class );
+                    startActivity( intent );
+                }
+
+            }
+        });*/
+
+        //feuilleter();
+        //nvlCollec();
 
 
-        /*recycler = findViewById( R.id.vet_recycler);
+        recycler = findViewById( R.id.vet_recyclerview);
         recycler.setHasFixedSize(true);
         layoutMn = new LinearLayoutManager(this);
-        recycler.setLayoutManager(layoutMn);*/
+        recycler.setLayoutManager(layoutMn);
 
 
 
     }
-  /* @Override
+   @Override
     protected void onStart()
     {
         super.onStart();
@@ -82,34 +97,45 @@ public class VetementActivity extends AppCompatActivity {
                         .build();
 
 
-        FirebaseRecyclerAdapter <Products, VetmentViewHolder > adapter =
-                new FirebaseRecyclerAdapter<Products, VetmentViewHolder>(options) {
+        FirebaseRecyclerAdapter <Products, ProductViewHolder > adapter =
+                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @NonNull
 
                     @Override
-                    protected void onBindViewHolder(@Nullable VetmentViewHolder holder, int position, @Nullable Products model)
+                    protected void onBindViewHolder(@Nullable ProductViewHolder holder, int position, @Nullable final Products model)
                     {
                         holder.txtProductName.setText(model.getPname());
-                        holder.txtTaille.setText(model.getTaille());
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        if (!type.equals("Admins")) {
+                            holder.itemView.setOnClickListener( new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent( VetementActivity.this , VetementDetailsActivity.class );
+                                    intent.putExtra( "pid" , model.getPid() );
+                                    startActivity( intent );
+
+                                }
+                            } );
+                        }
                     }
 
                     @NonNull
                     @Override
-                    public VetmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
                     {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vet_items, parent, false);
-                        VetmentViewHolder holder = new VetmentViewHolder(view);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
+                        ProductViewHolder holder = new ProductViewHolder(view);
                         return holder;
                     }
                 };
         recycler.setAdapter(adapter);
         adapter.startListening();
-    }*/
+    }
 
-   public  void nvlCollec()
+   /*public  void nvlCollec()
    {
        recyclerv = findViewById( R.id.nvl_collection );
        recyclerv.setHasFixedSize( true );
@@ -184,6 +210,6 @@ public class VetementActivity extends AppCompatActivity {
 
 
 
-   }
+   }*/
 
 }

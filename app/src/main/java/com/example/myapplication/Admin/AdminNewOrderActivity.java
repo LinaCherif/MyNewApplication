@@ -32,7 +32,7 @@ public class AdminNewOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_order);
 
-        ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
+        ordersRef = FirebaseDatabase.getInstance().getReference().child("Ordres");
         ordersList= findViewById(R.id.orders_list);
         ordersList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -49,15 +49,18 @@ public class AdminNewOrderActivity extends AppCompatActivity {
                new FirebaseRecyclerAdapter<AdminOrders, AdminOrderViewHolder>(options) {
                    @Override
                    protected void onBindViewHolder(@NonNull AdminOrderViewHolder holder, final int i, @NonNull final AdminOrders model) {
-                       holder.userName.setText("Name: " + model.getName());
-                       holder.userPhoneNumber.setText("Phone Number: " + model.getPhone());
-                       holder.userTotalPrice.setText("Total Amount: DA" + model.getTotalAmount());
-                       holder.userShippingAddress.setText("Shipping Address: " + model.getAddress() + " " + model.getCity());
-                       holder.userDateTime.setText("Order at: " + model.getDate() +" " + model.getTime() );
+                       holder.userName.setText("Nom: " + model.getName());
+                       holder.userPhoneNumber.setText("Numéro de téléphone: " + model.getPhone());
+                       holder.userTotalPrice.setText("Montant total: DA" + model.getTotalAmount());
+                       holder.userShippingAddress.setText("Adresse de livraison: " + model.getAddress() + " " + model.getCity());
+                       //holder.userSize.setText("Taille: " + model.getTaille() );
+                       holder.userDateTime.setText("Commande à: " + model.getDate() +" " + model.getTime() );
+
                        holder.ShowOrdersBtn.setOnClickListener(new View.OnClickListener() {
                            @Override
                            public void onClick(View view) {
                                String uID= getRef(i).getKey();
+
                                Intent intent = new Intent(AdminNewOrderActivity.this, AdminUserProductsActivity.class);
                                intent.putExtra("uid",uID);
                                startActivity(intent);
@@ -68,8 +71,8 @@ public class AdminNewOrderActivity extends AppCompatActivity {
                            @Override
                            public void onClick(View view) {
                                CharSequence options[]= new CharSequence[]
-                                       {      "yes",
-                                               "NO"
+                                       {      "OUI",
+                                               "NON"
                            };
                                AlertDialog.Builder builder = new AlertDialog.Builder(AdminNewOrderActivity.this);
                                builder.setTitle("Have you shipped this order products ?");
@@ -111,7 +114,7 @@ public class AdminNewOrderActivity extends AppCompatActivity {
     }
     public static class AdminOrderViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView userName, userPhoneNumber , userTotalPrice,userDateTime, userShippingAddress ;
+        public TextView userName, userPhoneNumber , userTotalPrice,userDateTime, userShippingAddress, userSize ;
         public Button ShowOrdersBtn;
         public AdminOrderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,6 +124,7 @@ public class AdminNewOrderActivity extends AppCompatActivity {
             userDateTime =itemView.findViewById(R.id.order_date_time);
             userShippingAddress =itemView.findViewById(R.id.order_address);
             ShowOrdersBtn =itemView.findViewById(R.id.show_all_products);
+          //  userSize =itemView.findViewById(R.id.size);
 
 
 

@@ -45,7 +45,7 @@ public class principal extends AppCompatActivity {
         { if (!TextUtils.isEmpty(UserPhoneKey))
         { if (!TextUtils.isEmpty(UserPasswordKey))
             {  AllowAccess(UserPhoneKey,UserPasswordKey);
-            loadingBar.setTitle("Already Logged");
+            loadingBar.setTitle("Déjà identifié!");
             loadingBar.setMessage("Patientez s'il vous plait..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show(); }}

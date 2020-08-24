@@ -83,7 +83,7 @@
         android:background="@drawable/seconnecter"
         android:backgroundTint="@color/colorAccent"
         android:layout_margin="18dp"
-        android:text="Add to cart"
+        android:text="Ajouter au panier"
         android:textSize="18dp"
         android:layout_alignParentBottom="true"  />
 

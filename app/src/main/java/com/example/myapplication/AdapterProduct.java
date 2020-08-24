@@ -33,7 +33,7 @@ public class AdapterProduct  extends RecyclerView.Adapter<AdapterProduct.Myholde
     @Override
     public Myholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(context).inflate(R.layout.vet_items, parent, false);
+        View view= LayoutInflater.from(context).inflate(R.layout.product_items_layout, parent, false);
         return new Myholder(view);
     }
 
@@ -44,7 +44,6 @@ public class AdapterProduct  extends RecyclerView.Adapter<AdapterProduct.Myholde
         myholder.mTitle.setText(vet.getPname());
         myholder.mDes.setText(vet.getDescription());
         myholder.mprice.setText(vet.getPrice());
-        myholder.mTaille.setText(vet.getTaille());
 
         Picasso.get()
                 .load(vet.getImage())
@@ -63,7 +62,7 @@ public class AdapterProduct  extends RecyclerView.Adapter<AdapterProduct.Myholde
 
     public class Myholder extends RecyclerView.ViewHolder {
         private ImageView mImaeView;
-        private TextView mTitle, mDes, mprice, mTaille;
+        private TextView mTitle, mDes, mprice;
 
         public Myholder (@NonNull View itemView) {
             super(itemView);
@@ -71,7 +70,6 @@ public class AdapterProduct  extends RecyclerView.Adapter<AdapterProduct.Myholde
             this.mTitle = itemView.findViewById(R.id.product_nam);
             this.mDes = itemView.findViewById(R.id.product_desc);
             this.mprice = itemView.findViewById(R.id.product_pri);
-            this.mTaille = itemView.findViewById(R.id.taille);
         }
 
     }
