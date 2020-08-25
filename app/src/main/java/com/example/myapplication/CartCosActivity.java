@@ -104,7 +104,7 @@ public class CartCosActivity extends AppCompatActivity {
                         CharSequence options[] = new CharSequence[]
                                 {
                                         "Modifier",
-                                        "Supprimer"
+                                        "Annuler"
 
                                 };
                         AlertDialog.Builder builder= new AlertDialog.Builder(CartCosActivity.this);

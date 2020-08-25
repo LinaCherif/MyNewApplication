@@ -177,8 +177,10 @@ import io.paperdb.Paper;
 
 
      public void onCustom(View view) {
-         Toast.makeText( this , "Produit favoris" , Toast.LENGTH_SHORT ).show();
-        // addingToFavList();
+         if (!type.equals("Admins")) {
+             Toast.makeText( this , "Produit favoris" , Toast.LENGTH_SHORT ).show();
+             // addingToFavList();
+         }
      }
      /*private void  addingToFavList()
      {  String saveCurrentDate, saveCurrentTime;
@@ -241,7 +243,7 @@ import io.paperdb.Paper;
 
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText( model.getPrice()+ "DA");
+                        holder.txtProductPrice.setText( model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {

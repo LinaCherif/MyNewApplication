@@ -53,7 +53,7 @@ public class AdminAddActivity extends AppCompatActivity
         Toast.makeText(this,"Bienvenue Admin!",Toast.LENGTH_LONG).show();
         CategoryName = getIntent().getExtras().get("categorie").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Image des Produits");
-        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Produits");
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Vêtements");
         Toast.makeText(this,CategoryName,Toast.LENGTH_SHORT).show();
 
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
@@ -115,19 +115,19 @@ public class AdminAddActivity extends AppCompatActivity
 
         if (ImageUri == null)
         {
-            Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "l'image du produit est obligatoire...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Description))
         {
-            Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "la description du produit est obligatoire...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Price))
         {
-            Toast.makeText(this, "Please write product Price...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "le prix du produit est obligatoire...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Pname))
         {
-            Toast.makeText(this, "Please write product name...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "la nom du produit est obligatoire...", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -139,8 +139,8 @@ public class AdminAddActivity extends AppCompatActivity
 
     private void StoreProductInformation()
     {
-        loadingBar.setTitle("Add New Product");
-        loadingBar.setMessage("Dear Admin, please wait while we are adding the new product.");
+        loadingBar.setTitle("Ajout d'un nouveau produit");
+        loadingBar.setMessage("Cher administrateur, veuillez patienter pendant que nous ajoutons le nouveau produit.");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
 
@@ -165,14 +165,14 @@ public class AdminAddActivity extends AppCompatActivity
             public void onFailure(@Nullable Exception e)
             {
                 String message = e.toString();
-                Toast.makeText(AdminAddActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddActivity.this, "Erreur: " + message, Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
             {
-                Toast.makeText(AdminAddActivity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAddActivity.this, "\n" + "Image du produit importée avec succès...", Toast.LENGTH_SHORT).show();
 
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
@@ -194,7 +194,7 @@ public class AdminAddActivity extends AppCompatActivity
                         {
                             downloadImageUrl = task.getResult().toString();
 
-                            Toast.makeText(AdminAddActivity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminAddActivity.this, "\n" + "a obtenu l'URL de l'image du produit avec succès...", Toast.LENGTH_SHORT).show();
 
                             SaveProductInfoToDatabase();
                         }
@@ -229,13 +229,13 @@ public class AdminAddActivity extends AppCompatActivity
                             startActivity(intent);
 
                             loadingBar.dismiss();
-                            Toast.makeText(AdminAddActivity.this, "Product is added successfully..", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminAddActivity.this, "Produit ajouté avec succé..", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             loadingBar.dismiss();
                             String message = task.getException().toString();
-                            Toast.makeText(AdminAddActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminAddActivity.this, "Erreur: " + message, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

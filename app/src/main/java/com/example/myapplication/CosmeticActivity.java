@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +53,7 @@ public class CosmeticActivity extends AppCompatActivity {
         Paper.init(this);
 
         Toolbar toolb = (Toolbar) findViewById(R.id.toolb);
-        toolb.setTitle("Cosmétiques");
+        toolb.setTitle("I&L Cosmétiques");
         setSupportActionBar(toolb);
 
         /*FloatingActionButton cos_cart = (FloatingActionButton) findViewById(R.id.cos_cart);
@@ -76,6 +77,9 @@ public class CosmeticActivity extends AppCompatActivity {
 
 
     }
+    public void onCustom(View view) {
+        Toast.makeText( this , "Produit favoris" , Toast.LENGTH_SHORT ).show();
+    }
     @Override
     protected void onStart()
     {
@@ -96,7 +100,7 @@ public class CosmeticActivity extends AppCompatActivity {
                     {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText(model.getPrice());
+                        holder.txtProductPrice.setText(model.getPrice() + "DA");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
                         if (!type.equals("Admins")) {
                             holder.itemView.setOnClickListener( new View.OnClickListener() {

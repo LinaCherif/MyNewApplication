@@ -105,13 +105,13 @@ public class AdminAdd2Activity extends AppCompatActivity {
 
 
         if (ImageUri == null) {
-            Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "l'image du produit est obligatoire..", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(Description)) {
-            Toast.makeText(this, "Please write product description...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "la description du produit est obligatoire...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(Price)) {
-            Toast.makeText(this, "Please write product Price...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "le prix du produit est obligatoire...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(Pname)) {
-            Toast.makeText(this, "Please write product name...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "la nom du produit est obligatoire...", Toast.LENGTH_SHORT).show();
         } else {
             StoreProductInformation();
         }
@@ -119,8 +119,8 @@ public class AdminAdd2Activity extends AppCompatActivity {
 
 
     private void StoreProductInformation() {
-        loadingBar.setTitle("Add New Product");
-        loadingBar.setMessage("Dear Admin, please wait while we are adding the new product.");
+        loadingBar.setTitle("Ajout d'un nouveau produit");
+        loadingBar.setMessage("Cher administrateur, veuillez patienter pendant que nous ajoutons le nouveau produit.");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
 
@@ -144,13 +144,13 @@ public class AdminAdd2Activity extends AppCompatActivity {
             @Override
             public void onFailure(@Nullable Exception e) {
                 String message = e.toString();
-                Toast.makeText(AdminAdd2Activity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAdd2Activity.this, "Erreur: " + message, Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(AdminAdd2Activity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAdd2Activity.this, "Image du produit importée avec succès....", Toast.LENGTH_SHORT).show();
 
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
@@ -168,7 +168,7 @@ public class AdminAdd2Activity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             downloadImageUrl = task.getResult().toString();
 
-                            Toast.makeText(AdminAdd2Activity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminAdd2Activity.this, "a obtenu l'URL de l'image du produit avec succès...", Toast.LENGTH_SHORT).show();
 
                             SaveProductInfoToDatabase();
                         }

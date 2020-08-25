@@ -58,7 +58,7 @@ public class VetementActivity extends AppCompatActivity {
         Paper.init(this);
 
       Toolbar tool = (Toolbar) findViewById(R.id.tool);
-        tool.setTitle("Vêtements");
+        tool.setTitle("I&L Vêtements");
         setSupportActionBar(tool);
 
         /*FloatingActionButton vet_cart = (FloatingActionButton) findViewById(R.id.vet_cart);
@@ -86,6 +86,11 @@ public class VetementActivity extends AppCompatActivity {
 
 
     }
+
+    public void onCustom(View view) {
+        Toast.makeText( this , "Produit favoris" , Toast.LENGTH_SHORT ).show();
+
+    }
    @Override
     protected void onStart()
     {
@@ -106,7 +111,7 @@ public class VetementActivity extends AppCompatActivity {
                     {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                        holder.txtProductPrice.setText(model.getPrice() + "Da");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         if (!type.equals("Admins")) {

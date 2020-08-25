@@ -75,7 +75,7 @@ public class AdminNewOrderActivity extends AppCompatActivity {
                                                "NON"
                            };
                                AlertDialog.Builder builder = new AlertDialog.Builder(AdminNewOrderActivity.this);
-                               builder.setTitle("Have you shipped this order products ?");
+                               builder.setTitle("Avez vous expédié les produits de cette commande ?");
 
                                builder.setItems(options, new DialogInterface.OnClickListener() {
                                    @Override

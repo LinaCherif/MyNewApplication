@@ -71,7 +71,7 @@ deleteBtn.setOnClickListener(new View.OnClickListener() {
                 Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminCatActivity.class);
                 startActivity(intent);
                 finish();
-                Toast.makeText(AdminMaintainProductsActivity.this,"The Product Is Deleted Successfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminMaintainProductsActivity.this,"Le produit est supprimé avec succés",Toast.LENGTH_SHORT).show();
 
             }
         }); }
@@ -83,17 +83,17 @@ deleteBtn.setOnClickListener(new View.OnClickListener() {
 
         if(pName.equals("")){
 
-            Toast.makeText(this, "write down product name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ecrire le nom du produit", Toast.LENGTH_SHORT).show();
 
         }
          else if(pPrice.equals("")){
 
-            Toast.makeText(this, "write down product price", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ecrire le prix ", Toast.LENGTH_SHORT).show();
 
         }
         else if(pDescription.equals("")){
 
-            Toast.makeText(this, "write down product description", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ecrire la description", Toast.LENGTH_SHORT).show();
 
         }
         else {
@@ -110,7 +110,7 @@ deleteBtn.setOnClickListener(new View.OnClickListener() {
                 {
                     if(task.isSuccessful()){
 
-                        Toast.makeText(AdminMaintainProductsActivity.this, "Changes applied successfully",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminMaintainProductsActivity.this, "Changements appliqués avec succés",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminCatActivity.class);
                         startActivity(intent);
                         finish();
